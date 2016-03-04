@@ -1,6 +1,6 @@
 angular.module('movieCatalogApp.controllers', [])
 
-.controller('MovieListController', ['$scope', '$window', '$filter', 'MovieService',function($scope, $window, $filter, MovieService) {
+.controller('MovieListController', ['$scope', '$window', 'MovieService',function($scope, $window, MovieService) {
   $scope.movies = MovieService.query();
 
   $scope.deleteMovie = function(movie) { // Delete a movie. Issues a DELETE to /api/movies/:id
@@ -20,13 +20,19 @@ angular.module('movieCatalogApp.controllers', [])
   $scope.movie = new MovieService();
 
   $scope.addMovie = function() {
-    $scope.movie.$save();
+    $scope.movie.$save(function(response){
+      $scope.movies.push(response.data);
+    });
   };
 }])
 
-.controller('MovieEditController', ['$scope', '$state', '$stateParams', 'MovieService', function($scope, $state, $stateParams, MovieService) {
+.controller('MovieEditController', ['$scope', '$state', '$filter', '$stateParams', 'MovieService', function($scope, $state, $filter, $stateParams, MovieService) {
   $scope.updateMovie = function() {
-    $scope.movie.$update();
+    $scope.movie.$update(function(){
+      var old_movie = $filter('filter')($scope.movies, {"_id": $scope.movie._id});
+      var index = $scope.movies.indexOf(old_movie[0]);
+      $scope.movies[index] = $scope.movie;
+    });
   };
 
   $scope.loadMovie = function() {
