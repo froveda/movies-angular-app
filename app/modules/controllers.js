@@ -1,13 +1,13 @@
 angular.module('movieCatalogApp.controllers', [])
 
-.controller('MovieListController', ['$scope', '$window', 'MovieService',function($scope, $window, MovieService) {
+.controller('MovieListController', ['$scope', '$window', '$filter', 'MovieService',function($scope, $window, $filter, MovieService) {
   $scope.movies = MovieService.query();
 
   $scope.deleteMovie = function(movie) { // Delete a movie. Issues a DELETE to /api/movies/:id
     if ($window.confirm('Are you sure?')) {
-      movie.$delete(function() {
-        $window.location.href = '';
-      });
+      movie.$delete();
+      var index = $scope.movies.indexOf(movie);
+      $scope.movies.splice(index, 1);
     }
   };
 }])
