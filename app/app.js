@@ -15,16 +15,22 @@ config(function($stateProvider, $urlRouterProvider) {
 
   // Now set up the states
   $stateProvider
-    .state('list', {
+    .state('movie', {
       url: "/",
       templateUrl: "/app/views/movies/list.html",
       controller: "MoviesListController"
     })
-    .state('list.detail', {
-      url: "/movie/{idMovie}",
+    .state('movie.detail', {
+      url: "/movie/details/{idMovie}",
       templateUrl: "/app/views/movies/details.html",
-      controller: function($stateParams, $scope, MovieService) {
-        $scope.movie = MovieService.get({id: $stateParams.idMovie});
-      }
+      controller: 'MovieController'
+    }).state('movie.add', {
+      url: "/movie/add",
+      templateUrl: "/app/views/movies/form.html",
+      controller: 'MovieController'
+    }).state('movie.edit', {
+      url: "/movie/edit/{idMovie}",
+      templateUrl: "/app/views/movies/form.html",
+      controller: 'MovieController'
     });
 });
