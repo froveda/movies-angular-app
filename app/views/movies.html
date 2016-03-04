@@ -1,0 +1,23 @@
+<h1>MOVIES APP</h1>
+<table class="table table-hover">
+    <tr class="warning">
+        <th>ID</th>
+        <th>Name</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="movie in movies">
+        <td>{{movie._id}}</td>
+        <td>{{movie.name}}</td>
+        <td>
+            <a class="btn btn-info" ui-sref=".detail({id:movie._id})">Details</a>
+            <a class="btn btn-primary" ui-sref=".edit({id:movie._id})">Edit</a>
+            <a class="btn btn-danger"  ng-click="deleteMovie(movie)">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<a ui-sref=".add" class="btn btn-success">Add Movie</a>
+
+<div class="row">
+    <div class="col-md-12"><aside ui-view></aside></div>
+</div>

@@ -1,0 +1,26 @@
+<div class="col-md-12">
+    <form name="movieForm" accept-charset="UTF-8" ng-submit="movieForm.$valid && processForm()" novalidate>
+        <div class="form-group" ng-class="{'has-error': (movieForm.$submitted || movieForm.name.$dirty)}">
+            <label class="control-label">Name</label>
+            <input type="text" ng-model="movie.name" id="name" name="name" class="form-control" autocomplete="off" required/>
+
+            <ng-messages for="movieForm.name.$error" ng-if="movieForm.$submitted || movieForm.name.$dirty">
+                <ng-message when="required" class="error-message">Name is required</ng-message>
+            </ng-messages>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Gender</label>
+            <input type="text" ng-model="movie.gender" id="gender" name="gender" class="form-control" autocomplete="off"/>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Year</label>
+            <input type="text" ng-model="movie.year" id="year" name="year" class="form-control" autocomplete="off"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-default" type="submit">Submit</button>
+        </div>
+    </form>
+</div>

@@ -4,6 +4,7 @@
 angular.module('movieCatalogApp', [
   'ui.router',
   'ngResource',
+  'ngMessages',
   'movieCatalogApp.controllers',
   'movieCatalogApp.services'
 ]).
@@ -17,20 +18,20 @@ config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('movie', {
       url: "/",
-      templateUrl: "/app/views/movies/list.html",
-      controller: "MoviesListController"
+      templateUrl: "/app/views/movies.html",
+      controller: "MovieListController"
     })
     .state('movie.detail', {
-      url: "/movie/details/{idMovie}",
-      templateUrl: "/app/views/movies/details.html",
-      controller: 'MovieController'
+      url: "/movie/:id/details/",
+      templateUrl: "/app/views/movie_details.html",
+      controller: 'MovieViewController'
     }).state('movie.add', {
       url: "/movie/add",
-      templateUrl: "/app/views/movies/form.html",
-      controller: 'MovieController'
+      templateUrl: "/app/views/movie_new.html",
+      controller: 'MovieNewController'
     }).state('movie.edit', {
-      url: "/movie/edit/{idMovie}",
-      templateUrl: "/app/views/movies/form.html",
-      controller: 'MovieController'
+      url: "/movie/:id/edit",
+      templateUrl: "/app/views/movie_edit.html",
+      controller: 'MovieEditController'
     });
 });
