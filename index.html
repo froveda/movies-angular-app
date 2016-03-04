@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Movies Angular App</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="app/stylesheets/app.css">
+      <!-- Bootstrap -->
+      <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body ng-app="movieCatalogApp">
+
+      <div ui-view class="container"></div>
+
+      <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/angular-resource/angular-resource.js"></script>
+      <script src="app/app.js"></script>
+      <script src="app/modules/services.js"></script>
+      <script src="app/services/movieService.js"></script>
+      <script src="app/modules/controllers.js"></script>
+      <script src="app/controllers/MoviesListController.js"></script>
+    </body>
+</html>

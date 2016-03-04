@@ -4,28 +4,27 @@
 angular.module('movieCatalogApp', [
   'ui.router',
   'ngResource',
-  'movieCatalogApp.filters',
-  'movieCatalogApp.directives',
-  'movieCatalogApp.services',
-  'movieCatalogApp.viewAllMovies',
-  'movieCatalogApp.viewDetail'
+  'movieCatalogApp.controllers',
+  'movieCatalogApp.services'
 ]).
 
 config(function($stateProvider, $urlRouterProvider) {
-  //
+
   // For any unmatched url, redirect to /all-movies
-  $urlRouterProvider.otherwise("/all-movies");
-  //
+  $urlRouterProvider.otherwise("/");
+
   // Now set up the states
   $stateProvider
-    .state('all-movies', {
-      url: "/all-movies",
-      templateUrl: "views/all-movies/all-movies.html",
-      controller: 'allMoviesController'
+    .state('list', {
+      url: "/",
+      templateUrl: "/app/views/movies/list.html",
+      controller: "MoviesListController"
     })
-    .state('all-movies.detail', {
-      url: "/detail/{idMovie}",
-      templateUrl: "views/detail/detail.html",
-      controller: 'detailController'
+    .state('list.detail', {
+      url: "/movie/{idMovie}",
+      templateUrl: "/app/views/movies/details.html",
+      controller: function($stateParams, $scope, MovieService) {
+        $scope.movie = MovieService.get({id: $stateParams.idMovie});
+      }
     });
 });
