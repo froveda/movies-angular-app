@@ -5,8 +5,9 @@ angular.module('movieCatalogApp', [
   'ui.router',
   'ngResource',
   'ngMessages',
+  'movieCatalogApp.services',
   'movieCatalogApp.controllers',
-  'movieCatalogApp.services'
+  'movieCatalogApp.directives'
 ]).
 
 config(function($stateProvider, $urlRouterProvider) {
