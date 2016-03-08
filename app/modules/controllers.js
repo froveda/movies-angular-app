@@ -21,21 +21,23 @@ angular.module('movieCatalogApp.controllers', [])
   $scope.movie = MovieService.get({id: $stateParams.id});
 }])
 
-.controller('MovieNewController', ['$scope', 'MovieService', function($scope, MovieService) {
+.controller('MovieNewController', ['$scope', '$state', 'MovieService', function($scope, $state, MovieService) {
   $scope.movie = new MovieService();
 
   $scope.addMovie = function() {
     $scope.movie.$save(function(response){
       $scope.movies.push(response.data);
       $scope.$emit('updateMovies');
+      $state.go('movie')
     });
   };
 }])
 
-.controller('MovieEditController', ['$scope', '$filter', '$stateParams', 'MovieService', function($scope, $filter, $stateParams, MovieService) {
+.controller('MovieEditController', ['$scope',  '$state',  '$filter', '$stateParams', 'MovieService', function($scope, $state, $filter, $stateParams, MovieService) {
   $scope.updateMovie = function() {
     $scope.movie.$update(function(){
       $scope.$emit('updateMovies');
+      $state.go('movie')
     });
   };
 
