@@ -7,6 +7,7 @@ angular.module('movieCatalogApp.directives', [])
       nameFilter: '='
     },
     restrict: 'E',
+    controller: 'MovieListController',
     templateUrl: '/app/views/movies_grid.html'
   };
 });

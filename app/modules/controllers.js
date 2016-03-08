@@ -10,28 +10,32 @@ angular.module('movieCatalogApp.controllers', [])
       $scope.movies.splice(index, 1);
     }
   };
+
+  $scope.$on('updateMovies', function (event, data) {
+    $scope.movies = MovieService.query();
+  });
+  
 }])
 
 .controller('MovieViewController', ['$scope', '$stateParams', 'MovieService',function($scope, $stateParams, MovieService) {
   $scope.movie = MovieService.get({id: $stateParams.id});
 }])
 
-.controller('MovieNewController', ['$scope', '$state', '$stateParams', 'MovieService', function($scope, $state, $stateParams, MovieService) {
+.controller('MovieNewController', ['$scope', 'MovieService', function($scope, MovieService) {
   $scope.movie = new MovieService();
 
   $scope.addMovie = function() {
     $scope.movie.$save(function(response){
       $scope.movies.push(response.data);
+      $scope.$emit('updateMovies');
     });
   };
 }])
 
-.controller('MovieEditController', ['$scope', '$state', '$filter', '$stateParams', 'MovieService', function($scope, $state, $filter, $stateParams, MovieService) {
+.controller('MovieEditController', ['$scope', '$filter', '$stateParams', 'MovieService', function($scope, $filter, $stateParams, MovieService) {
   $scope.updateMovie = function() {
     $scope.movie.$update(function(){
-      var old_movie = $filter('filter')($scope.movies, {"_id": $scope.movie._id});
-      var index = $scope.movies.indexOf(old_movie[0]);
-      $scope.movies[index] = $scope.movie;
+      $scope.$emit('updateMovies');
     });
   };
 
