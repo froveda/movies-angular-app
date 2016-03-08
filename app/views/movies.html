@@ -5,7 +5,7 @@
     <input type="text" class="form-control" ng-model="movie.name" placeholder="Movie name...">
 </div>
 
-<movies-grid movies="movies" name-filter="movie.name"></movies-grid>
+<movies-grid movies="movies" delete="deleteMovie" name-filter="movie.name"></movies-grid>
 
 <a ui-sref=".add" class="btn btn-success">Add Movie</a>
 

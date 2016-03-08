@@ -4,10 +4,10 @@ angular.module('movieCatalogApp.directives', [])
   return {
     scope:{
       movies: '=',
-      nameFilter: '='
+      nameFilter: '=',
+      delete: '='
     },
     restrict: 'E',
-    controller: 'MovieListController',
     templateUrl: '/app/views/movies_grid.html'
   };
 });
