@@ -1,13 +1,13 @@
 angular.module('movieCatalogApp.directives', [])
 
-.directive('moviesGrid', function(){
+.directive('moviesGrid', ['$window', '$filter', function(){
   return {
     scope:{
       movies: '=',
-      nameFilter: '='
+      nameFilter: '=',
+      deleteMovie: '='
     },
     restrict: 'E',
-    templateUrl: '/app/views/movies_grid.html',
-    controller: 'MovieListController'
+    templateUrl: '/app/views/movies_grid.html'
   };
-});
+}]);

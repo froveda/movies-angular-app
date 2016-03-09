@@ -21,7 +21,8 @@ angular.module('movieCatalogApp.controllers', [])
 
   $scope.addMovie = function() {
     $scope.movie.$save(function(response){
-      $scope.movies.push(response.data);
+      $scope.movies.push(MovieService.get({ id: response.data._id }));
+      $state.go('movie')
     });
   };
 }])
@@ -32,6 +33,7 @@ angular.module('movieCatalogApp.controllers', [])
       var old_movie = $filter('filter')($scope.movies, {"_id": $scope.movie._id});
       var index = $scope.movies.indexOf(old_movie[0]);
       $scope.movies[index] = $scope.movie;
+      $state.go('movie');
     });
   };
 
